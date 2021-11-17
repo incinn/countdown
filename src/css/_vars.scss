@@ -1,0 +1,18 @@
+$breakpoints: (
+    'phone': 500px,
+    'tablet': 768px,
+    'desktop': 1024px,
+) !default;
+
+:root {
+    --gutter: 0.85rem;
+    --content-width: 1024px;
+
+    --white: #fff;
+    --light: #fff8e8;
+
+    --dark: #4c5760;
+    --red: #bc4b51;
+    --bronze: #d58936;
+    --green: #698f3f;
+}
