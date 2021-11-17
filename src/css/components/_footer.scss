@@ -1,0 +1,17 @@
+body > footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--dark);
+    color: var(--light);
+
+    .inner {
+        width: 100%;
+        max-width: var(--content-width);
+        padding: var(--gutter);
+
+        .love {
+            color: var(--red);
+        }
+    }
+}

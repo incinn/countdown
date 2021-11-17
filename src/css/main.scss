@@ -3,9 +3,22 @@
 @import '/node_modules/reset-css/reset.css';
 @import './fonts';
 
-// @import './components/header';
-// @import './components/footer';
+@import './components/header';
+@import './components/footer';
 
 body {
-    background-color: var(--light);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--dark);
+    color: var(--light);
+
+    > main {
+        flex: 1;
+    }
+
+    a {
+        color: inherit;
+    }
 }
