@@ -3,7 +3,10 @@
 @import '/node_modules/reset-css/reset.css';
 @import './fonts';
 
+@import './mixins/content';
+
 @import './components/header';
+@import './components/timer';
 @import './components/footer';
 
 body {
@@ -15,7 +18,12 @@ body {
     color: var(--light);
 
     > main {
+        @include content-area;
+
         flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     a {

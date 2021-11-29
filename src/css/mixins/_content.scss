@@ -1,0 +1,5 @@
+@mixin content-area {
+    width: 100%;
+    max-width: var(--content-width);
+    padding: var(--gutter);
+}

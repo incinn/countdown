@@ -1,0 +1,18 @@
+.timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__inner {
+        text-align: center;
+    }
+
+    &__duration {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+        font-weight: bold;
+    }
+
+    &__description {
+    }
+}

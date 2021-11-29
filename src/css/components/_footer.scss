@@ -6,11 +6,13 @@ body > footer {
     color: var(--light);
 
     .inner {
-        width: 100%;
-        max-width: var(--content-width);
-        padding: var(--gutter);
+        @include content-area;
+
+        text-align: center;
+        letter-spacing: 1px;
 
         .love {
+            padding: 0 5px;
             color: var(--red);
         }
     }
