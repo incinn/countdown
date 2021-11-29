@@ -1,30 +1,83 @@
 import * as dayjs from 'dayjs';
 import * as relativeTime from 'dayjs/plugin/relativeTime';
+import * as duration from 'dayjs/plugin/duration';
+
+interface CountdownTimer {
+    years: number;
+    months: number;
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+}
 
 export class Timer {
-    belgiumDate = '29 December 2021 12:05 GMT';
+    private belgiumDate = '29 December 2021 12:05 GMT';
+    private countdownEl: HTMLElement;
+    private timer: any;
 
     constructor() {
         dayjs.extend(relativeTime);
+        dayjs.extend(duration);
+
+        this.countdownEl = document.getElementById('timer');
+
+        if (!this.countdownEl) {
+            console.error('Unable to find timer element');
+            this.init = () => {};
+        }
     }
 
     public init(): void {
-        console.log('timer started');
-
-        this.calculate();
+        this.updateTimer();
+        this.timer = setInterval(() => this.updateTimer(), 1000);
     }
 
-    private calculate(): void {
-        // https://stackoverflow.com/questions/66639760/dayjs-diff-between-two-date-in-day-and-hours
-        const date1 = dayjs();
-        const date2 = dayjs(this.belgiumDate);
-        const diff = date2.diff(date1, 'day', true);
+    private calculate(target: string): CountdownTimer {
+        const raw = dayjs
+            .duration(dayjs(target).diff(dayjs()))
+            .format('Y;M;D;H;m;s;');
 
-        console.log('obtained', diff);
+        const data = raw.split(';');
 
-        const days = Math.floor(diff);
-        const hours = Math.floor((diff - days) * 24);
+        return {
+            years: +data[0],
+            months: +data[1],
+            days: +data[2],
+            hours: +data[3],
+            minutes: +data[4],
+            seconds: +data[5],
+        };
+    }
 
-        console.log(`${days} days, ${hours} hours`);
+    private updateTimer(): void {
+        const timer = this.calculate(this.belgiumDate);
+        console.log(timer);
+
+        let output = '';
+
+        if (timer.years > 0) output += this.formatSegment(timer.years, 'years');
+        if (timer.months > 0)
+            output += this.formatSegment(timer.months, 'months');
+        if (timer.days > 0) output += this.formatSegment(timer.days, 'days');
+        if (timer.hours > 0) output += this.formatSegment(timer.hours, 'hours');
+        output += this.formatSegment(timer.minutes, 'minutes');
+        output += this.formatSegment(timer.seconds, 'seconds');
+
+        if (timer.hours === 0 && timer.minutes === 0 && timer.seconds === 0)
+            output = 'COMPLETED';
+
+        this.countdownEl.innerHTML = output.trim();
+    }
+
+    private formatSegment(time: number, text: string): string {
+        let output = '';
+
+        if (time === 22) output += `<span class="special">${time}</span> `;
+        else output += `${time} `;
+
+        output += `<span class="text">${text}</span> `;
+
+        return output;
     }
 }

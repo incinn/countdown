@@ -11,6 +11,15 @@
         font-size: 2rem;
         margin-bottom: 3rem;
         font-weight: bold;
+        font-family: monospace;
+
+        .text {
+            opacity: 0.25;
+        }
+
+        .special {
+            color: red;
+        }
     }
 
     &__description {
