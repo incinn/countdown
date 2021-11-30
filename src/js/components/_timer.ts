@@ -38,7 +38,6 @@ export class Timer {
 
     private updateTimer(): void {
         const timer = this.calculate(this.belgiumDate);
-        console.log(timer);
 
         let output = '';
 
