@@ -52,7 +52,8 @@ export class Timer {
 
         if (timer.hours <= 0 && timer.minutes <= 0 && timer.seconds <= 0) {
             output = 'COMPLETED';
-
+            this.timerComplete();
+        }
         this.countdownEl.innerHTML = output.trim();
     }
 
@@ -80,11 +81,30 @@ export class Timer {
 
         if (time === 22) {
             output += `<span class="special">${time}</span> `;
-            this.confetti.addConfetti();
+            this.confetti.addConfetti({
+                emojis: ['😘', '😍', '❤️', '❤️', '🍩', '🍊', '😏'],
+                emojiSize: 25,
+                confettiRadius: 30,
+                confettiNumber: 7,
+            });
         } else output += `${time} `;
 
         output += `<span class="text">${text}</span> `;
 
         return output;
+    }
+
+    private timerComplete(): void {
+        clearInterval(this.timer);
+        const timer = setInterval(
+            () =>
+                this.confetti.addConfetti({
+                    emojis: ['😘', '😍', '❤️', '❤️', '🍩', '🍊', '😏'],
+                    emojiSize: 25,
+                    confettiRadius: 30,
+                    confettiNumber: 50,
+                }),
+            2000
+        );
     }
 }
