@@ -33,6 +33,26 @@ export class Timer {
         this.timer = setInterval(() => this.updateTimer(), 1000);
     }
 
+    private updateTimer(): void {
+        const timer = this.calculate(this.belgiumDate);
+        console.log(timer);
+
+        let output = '';
+
+        if (timer.years > 0) output += this.formatSegment(timer.years, 'year');
+        if (timer.months > 0)
+            output += this.formatSegment(timer.months, 'month');
+        if (timer.days > 0) output += this.formatSegment(timer.days, 'day');
+        if (timer.hours > 0) output += this.formatSegment(timer.hours, 'hour');
+        output += this.formatSegment(timer.minutes, 'minute');
+        output += this.formatSegment(timer.seconds, 'second');
+
+        if (timer.hours === 0 && timer.minutes === 0 && timer.seconds === 0)
+            output = 'COMPLETED';
+
+        this.countdownEl.innerHTML = output.trim();
+    }
+
     private calculate(target: string): CountdownTimer {
         const raw = dayjs
             .duration(dayjs(target).diff(dayjs()))
@@ -50,28 +70,10 @@ export class Timer {
         };
     }
 
-    private updateTimer(): void {
-        const timer = this.calculate(this.belgiumDate);
-        console.log(timer);
-
-        let output = '';
-
-        if (timer.years > 0) output += this.formatSegment(timer.years, 'years');
-        if (timer.months > 0)
-            output += this.formatSegment(timer.months, 'months');
-        if (timer.days > 0) output += this.formatSegment(timer.days, 'days');
-        if (timer.hours > 0) output += this.formatSegment(timer.hours, 'hours');
-        output += this.formatSegment(timer.minutes, 'minutes');
-        output += this.formatSegment(timer.seconds, 'seconds');
-
-        if (timer.hours === 0 && timer.minutes === 0 && timer.seconds === 0)
-            output = 'COMPLETED';
-
-        this.countdownEl.innerHTML = output.trim();
-    }
-
     private formatSegment(time: number, text: string): string {
         let output = '';
+
+        if (time != 1) text += 's';
 
         if (time === 22) output += `<span class="special">${time}</span> `;
         else output += `${time} `;
