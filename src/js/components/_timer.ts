@@ -1,6 +1,7 @@
-import * as dayjs from 'dayjs';
-import * as relativeTime from 'dayjs/plugin/relativeTime';
-import * as duration from 'dayjs/plugin/duration';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import duration from 'dayjs/plugin/duration';
+import JSConfetti from 'js-confetti';
 
 interface CountdownTimer {
     years: number;
@@ -15,12 +16,14 @@ export class Timer {
     private belgiumDate = '29 December 2021 12:05 GMT';
     private countdownEl: HTMLElement;
     private timer: any;
+    private confetti: JSConfetti;
 
     constructor() {
         dayjs.extend(relativeTime);
         dayjs.extend(duration);
 
         this.countdownEl = document.getElementById('timer');
+        this.confetti = new JSConfetti();
 
         if (!this.countdownEl) {
             console.error('Unable to find timer element');
@@ -75,8 +78,10 @@ export class Timer {
 
         if (time != 1) text += 's';
 
-        if (time === 22) output += `<span class="special">${time}</span> `;
-        else output += `${time} `;
+        if (time === 22) {
+            output += `<span class="special">${time}</span> `;
+            this.confetti.addConfetti();
+        } else output += `${time} `;
 
         output += `<span class="text">${text}</span> `;
 
