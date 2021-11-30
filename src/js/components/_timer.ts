@@ -80,9 +80,9 @@ export class Timer {
         if (time != 1) text += 's';
 
         if (time === 22) {
-            output += `<span class="special">${time}</span> `;
+            output += `<span class="highlight">${time}</span> `;
             this.confetti.addConfetti({
-                emojis: ['😘', '😍', '❤️', '❤️', '🍩', '🍊', '😏'],
+                emojis: ['😘', '😍', '❤️', '🍩', '🍊', '😏'],
                 emojiSize: 25,
                 confettiRadius: 30,
                 confettiNumber: 7,
@@ -99,7 +99,7 @@ export class Timer {
         const timer = setInterval(
             () =>
                 this.confetti.addConfetti({
-                    emojis: ['😘', '😍', '❤️', '❤️', '🍩', '🍊', '😏'],
+                    emojis: ['😘', '😍', '❤️', '🍩', '🍊', '😏'],
                     emojiSize: 25,
                     confettiRadius: 30,
                     confettiNumber: 50,
