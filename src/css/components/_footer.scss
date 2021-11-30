@@ -10,6 +10,12 @@ body > footer {
 
         text-align: center;
         letter-spacing: 1px;
+        opacity: 0.1;
+        transition: opacity var(--transition);
+
+        &:hover {
+            opacity: 1;
+        }
 
         .love {
             padding: 0 5px;
