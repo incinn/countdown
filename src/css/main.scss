@@ -3,6 +3,7 @@
 @import '/node_modules/reset-css/reset.css';
 @import './fonts';
 
+@import './mixins/media';
 @import './mixins/content';
 
 @import './animations/_aurora.anim';
