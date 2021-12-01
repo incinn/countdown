@@ -13,7 +13,8 @@ interface CountdownTimer {
 }
 
 export class Timer {
-    private belgiumDate = '29 December 2021 12:05 GMT';
+    // private belgiumDate = '29 December 2021 12:05 GMT';
+    private belgiumDate = '29 December 2021 19:05 GMT';
     private countdownEl: HTMLElement;
     private timer: any;
     private confetti: JSConfetti;
@@ -25,8 +26,8 @@ export class Timer {
         this.countdownEl = document.getElementById('timer');
         this.confetti = new JSConfetti();
 
-        if (!this.countdownEl) {
-            console.error('Unable to find timer element');
+        if (!this.countdownEl || !this.confetti) {
+            console.error('Unable to start timer');
             this.init = () => {};
         }
     }
