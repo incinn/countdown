@@ -83,7 +83,7 @@ export class Timer {
     }
 
     private formatSegment(time: number, text: string): string {
-        let output = '';
+        let output = '<div class="segment">';
 
         if (time != 1) text += 's';
 
@@ -97,7 +97,7 @@ export class Timer {
             });
         } else output += `${time} `;
 
-        output += `<span class="text">${text}</span> `;
+        output += `<span class="text">${text}</span></div>`;
 
         return output;
     }
