@@ -11,17 +11,23 @@
     }
 
     &__duration {
+        display: flex;
         font-size: 2rem;
         margin-bottom: 5rem;
         font-weight: bold;
         font-family: monospace;
 
-        .text {
-            opacity: 0.6;
-        }
+        .segment {
+            &:not(:last-of-type) {
+                margin-right: 1.75rem;
+            }
+            .text {
+                opacity: 0.6;
+            }
 
-        .highlight {
-            animation: pulse 1s infinite ease-out;
+            .highlight {
+                animation: pulse 1s infinite ease-out;
+            }
         }
     }
 
