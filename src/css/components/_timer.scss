@@ -1,0 +1,32 @@
+@import '../animations/pulse.anim';
+
+.timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 3px 3px var(--dark);
+
+    &__inner {
+        text-align: center;
+    }
+
+    &__duration {
+        font-size: 2rem;
+        margin-bottom: 5rem;
+        font-weight: bold;
+        font-family: monospace;
+
+        .text {
+            opacity: 0.6;
+        }
+
+        .highlight {
+            animation: pulse 1s infinite ease-out;
+        }
+    }
+
+    &__description {
+        font-size: 1.5rem;
+        text-shadow: 2px 2px var(--dark);
+    }
+}
