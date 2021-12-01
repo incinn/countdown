@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    text-shadow: 3px 3px var(--dark);
 
     &__inner {
         text-align: center;
@@ -16,7 +17,7 @@
         font-family: monospace;
 
         .text {
-            opacity: 0.25;
+            opacity: 0.6;
         }
 
         .highlight {
@@ -26,5 +27,6 @@
 
     &__description {
         font-size: 1.5rem;
+        text-shadow: 2px 2px var(--dark);
     }
 }
