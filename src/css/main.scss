@@ -5,27 +5,49 @@
 
 @import './mixins/content';
 
+@import './animations/_aurora.anim';
+
 @import './components/header';
 @import './components/timer';
 @import './components/footer';
 
 body {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh;
     background-color: var(--dark);
     font-family: monospace;
     font-size: 16px;
     color: var(--light);
 
-    > main {
-        @include content-area;
+    background: linear-gradient(
+        45deg,
+        #32a6ff 0%,
+        #3f6fff 49%,
+        #bb75bc 75%,
+        #5dad67 95%
+    );
+    background-size: 200%;
+    animation: aurora 15s infinite;
 
-        flex: 1;
+    .wrapper {
         display: flex;
         align-items: center;
-        justify-content: center;
+        flex-direction: column;
+        min-height: 100vh;
+
+        background: radial-gradient(
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.25)
+        );
+        background-size: 200%;
+        animation: aurora 8s infinite;
+
+        > main {
+            @include content-area;
+
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
 
     a {
