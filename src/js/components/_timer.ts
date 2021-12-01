@@ -51,7 +51,13 @@ export class Timer {
         output += this.formatSegment(timer.minutes, 'minute');
         output += this.formatSegment(timer.seconds, 'second');
 
-        if (timer.hours <= 0 && timer.minutes <= 0 && timer.seconds <= 0) {
+        if (
+            timer.years <= 0 &&
+            timer.days <= 0 &&
+            timer.hours <= 0 &&
+            timer.minutes <= 0 &&
+            timer.seconds <= 0
+        ) {
             output = 'COMPLETED';
             this.timerComplete();
         }
