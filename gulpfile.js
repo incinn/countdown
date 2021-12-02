@@ -42,7 +42,7 @@ function compileTs() {
         .pipe(
             webpackStream({
                 mode: _PROD ? 'production' : 'development',
-                devtool: _PROD ? '' : 'source-map',
+                devtool: _PROD ? undefined : 'source-map',
                 entry: './src/js/main.ts',
                 module: {
                     rules: [
