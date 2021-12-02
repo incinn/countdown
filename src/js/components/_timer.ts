@@ -59,7 +59,7 @@ export class Timer {
             timer.minutes <= 0 &&
             timer.seconds <= 0
         ) {
-            output = 'COMPLETED';
+            output = '<span class="completed">Arrived</span>';
             this.timerComplete();
         }
         this.countdownEl.innerHTML = output.trim();
@@ -104,15 +104,15 @@ export class Timer {
 
     private timerComplete(): void {
         clearInterval(this.timer);
-        const timer = setInterval(
+        this.timer = setInterval(
             () =>
                 this.confetti.addConfetti({
-                    emojis: ['😘', '😍', '❤️', '🍩', '🍊', '😏'],
+                    emojis: ['😘', '😍', '❤️', '❤️', '❤️', '🍩', '🍊', '😏'],
                     emojiSize: 25,
                     confettiRadius: 30,
                     confettiNumber: 50,
                 }),
-            2000
+            2200
         );
     }
 }

@@ -10,6 +10,7 @@
 
 @import './components/header';
 @import './components/timer';
+@import './components/event';
 @import './components/footer';
 
 body {
@@ -23,8 +24,8 @@ body {
         45deg,
         #32a6ff 0%,
         #3f6fff 49%,
-        #bb75bc 75%,
-        #5dad67 95%
+        #bb75bc 86%,
+        #5dad67 97%
     );
     background-size: 200%;
     animation: aurora 15s infinite;
@@ -37,7 +38,7 @@ body {
 
         background: radial-gradient(
             rgba(255, 255, 255, 0.1),
-            rgba(255, 255, 255, 0.25)
+            rgba(255, 255, 255, 0.35)
         );
         background-size: 200%;
         animation: aurora 8s infinite;
@@ -47,6 +48,7 @@ body {
 
             flex: 1;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
         }

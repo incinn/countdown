@@ -7,6 +7,7 @@
     .inner {
         @include content-area;
 
+        font-size: 0.75rem;
         text-align: center;
         letter-spacing: 1px;
         opacity: 0.1;
