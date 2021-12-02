@@ -15,7 +15,7 @@ const months = [
     'Dec',
 ];
 
-export class DateEl {
+export class EventBlock {
     private date: Dayjs;
     private dateEl: HTMLElement;
 
