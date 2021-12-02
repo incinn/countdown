@@ -14,6 +14,8 @@ export class Site {
 
         this.displayVersion();
         this.setDate();
+
+        console.info('View source: https://github.com/incinn/countdown');
     }
 
     private displayVersion(): void {

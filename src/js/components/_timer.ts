@@ -38,8 +38,6 @@ export class Timer extends SitePlugin {
     public init(): void {
         this.updateTimer();
         this.timer = setInterval(() => this.updateTimer(), 1000);
-        console.info(`Countdown to ${this.belgiumDate} has begun.`);
-        console.info('View source: https://github.com/incinn/countdown');
     }
 
     private updateTimer(): void {
