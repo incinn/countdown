@@ -59,7 +59,7 @@ export class Timer {
             timer.minutes <= 0 &&
             timer.seconds <= 0
         ) {
-            output = 'COMPLETED';
+            output = '<span class="completed">Arrived</span>';
             this.timerComplete();
         }
         this.countdownEl.innerHTML = output.trim();

@@ -47,15 +47,15 @@
             }
 
             .highlight {
-                animation: pulse 1s infinite ease-out;
+                animation: pulse 1s infinite ease-in-out;
             }
         }
-    }
 
-    &__description {
-        font-size: 1.5rem;
-        line-height: 1.5;
-        text-shadow: 2px 2px var(--dark);
-        padding: 0 2rem;
+        .completed {
+            animation: pulse-success 1s infinite ease-in-out;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            text-shadow: 2px 2px var(--dark);
+        }
     }
 }
