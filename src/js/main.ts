@@ -7,5 +7,5 @@ window.onload = () => {
     new DateEl().init();
 
     const versionEl = document.getElementById('version');
-    versionEl.innerHTML = __VERSION;
+    versionEl.innerHTML = 'v' + __VERSION;
 };
