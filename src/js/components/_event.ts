@@ -35,12 +35,8 @@ export class EventBlock extends SitePlugin {
         this.updateDate();
     }
 
-    private getDate(): void {
-        this.date = dayjs('29 December 2021 12:05 GMT');
-    }
-
     private updateDate(): void {
-        this.getDate();
+        const date = dayjs(this.getDate());
 
         const day = this.dateEl.querySelector('span.day');
         const month = this.dateEl.querySelector('span.month');
@@ -51,8 +47,8 @@ export class EventBlock extends SitePlugin {
             return;
         }
 
-        day.innerHTML = this.date.date().toString();
-        month.innerHTML = months[this.date.month()];
-        year.innerHTML = this.date.year().toString();
+        day.innerHTML = date.date().toString();
+        month.innerHTML = months[date.month()];
+        year.innerHTML = date.year().toString();
     }
 }

@@ -14,8 +14,6 @@ interface CountdownTimer {
 }
 
 export class Timer extends SitePlugin {
-    // private belgiumDate = '29 December 2021 12:05 GMT';
-    private belgiumDate = '29 December 2021 19:05 GMT';
     private countdownEl: HTMLElement;
     private timer: any;
     private confetti: JSConfetti;
@@ -41,7 +39,7 @@ export class Timer extends SitePlugin {
     }
 
     private updateTimer(): void {
-        const timer = this.calculate(this.belgiumDate);
+        const timer = this.calculate(this.getDate());
 
         let output = '';
 
