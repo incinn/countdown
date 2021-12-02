@@ -10,6 +10,7 @@
 
 @import './components/header';
 @import './components/timer';
+@import './components/event';
 @import './components/footer';
 
 body {
@@ -47,6 +48,7 @@ body {
 
             flex: 1;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
