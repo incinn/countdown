@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import duration from 'dayjs/plugin/duration';
 import JSConfetti from 'js-confetti';
+import { SitePlugin } from './_plugin';
 
 interface CountdownTimer {
     years: number;
@@ -12,7 +13,7 @@ interface CountdownTimer {
     seconds: number;
 }
 
-export class Timer {
+export class Timer extends SitePlugin {
     // private belgiumDate = '29 December 2021 12:05 GMT';
     private belgiumDate = '29 December 2021 19:05 GMT';
     private countdownEl: HTMLElement;
@@ -20,6 +21,8 @@ export class Timer {
     private confetti: JSConfetti;
 
     constructor() {
+        super();
+
         dayjs.extend(relativeTime);
         dayjs.extend(duration);
 

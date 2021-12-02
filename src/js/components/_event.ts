@@ -1,4 +1,5 @@
 import dayjs, { Dayjs } from 'dayjs';
+import { SitePlugin } from './_plugin';
 
 const months = [
     'Jan',
@@ -15,11 +16,13 @@ const months = [
     'Dec',
 ];
 
-export class EventBlock {
+export class EventBlock extends SitePlugin {
     private date: Dayjs;
     private dateEl: HTMLElement;
 
     constructor() {
+        super();
+
         this.dateEl = document.getElementById('date');
 
         if (!this.dateEl) {
