@@ -13,9 +13,14 @@ export class Site {
         this.plugins.forEach((plugin: SitePlugin) => plugin.init());
 
         this.displayVersion();
+        this.setDate();
     }
 
     private displayVersion(): void {
         this.versionEl.innerHTML = 'v' + __VERSION;
+    }
+
+    private setDate(): void {
+        localStorage.setItem('targetDate', '29 December 2021 19:05 GMT');
     }
 }
