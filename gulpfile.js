@@ -23,6 +23,13 @@ function cleanup() {
     return del([outputLocation + '/**/*']);
 }
 
+function cleanInstall() {
+    return new Promise((res, rej) => {
+        if (_PROD) del('./node_modules/**/*');
+        res();
+    });
+}
+
 function compileSass() {
     return src(sassLocation)
         .pipe(gulpif(!_PROD, sourcemaps.init()))
@@ -42,7 +49,7 @@ function compileTs() {
         .pipe(
             webpackStream({
                 mode: _PROD ? 'production' : 'development',
-                devtool: _PROD ? '' : 'source-map',
+                devtool: _PROD ? undefined : 'source-map',
                 entry: './src/js/main.ts',
                 module: {
                     rules: [
@@ -91,7 +98,8 @@ function watchSource() {
 exports.build = series(
     cleanup,
     parallel(copyAssets, compileSass, compileTs),
-    buildHtml
+    buildHtml,
+    cleanInstall
 );
 exports.watch = series(
     cleanup,
