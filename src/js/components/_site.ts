@@ -10,12 +10,16 @@ export class Site {
     constructor() {}
 
     public init(): void {
-        this.plugins.forEach((plugin: SitePlugin) => plugin.init());
-
         this.displayVersion();
         this.setDate();
 
+        this.startPlugins();
+
         console.info('View source: https://github.com/incinn/countdown');
+    }
+
+    private startPlugins(): void {
+        this.plugins.forEach((plugin: SitePlugin) => plugin.init());
     }
 
     private displayVersion(): void {
