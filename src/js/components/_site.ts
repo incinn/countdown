@@ -23,6 +23,6 @@ export class Site {
     }
 
     private setDate(): void {
-        localStorage.setItem('targetDate', '29 December 2021 19:05 GMT');
+        localStorage.setItem('targetDate', '29 December 2021 12:05 GMT');
     }
 }
