@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Pulling latest changes..."
-git pull origin master
+git pull origin main
 echo "Installing dependencies..."
 npm ci
 echo "Building project..."

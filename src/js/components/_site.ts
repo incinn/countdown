@@ -10,12 +10,16 @@ export class Site {
     constructor() {}
 
     public init(): void {
-        this.plugins.forEach((plugin: SitePlugin) => plugin.init());
-
         this.displayVersion();
         this.setDate();
 
+        this.startPlugins();
+
         console.info('View source: https://github.com/incinn/countdown');
+    }
+
+    private startPlugins(): void {
+        this.plugins.forEach((plugin: SitePlugin) => plugin.init());
     }
 
     private displayVersion(): void {
@@ -23,6 +27,6 @@ export class Site {
     }
 
     private setDate(): void {
-        localStorage.setItem('targetDate', '29 December 2021 19:05 GMT');
+        localStorage.setItem('targetDate', '29 December 2021 12:05 GMT');
     }
 }
