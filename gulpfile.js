@@ -23,7 +23,7 @@ function cleanup() {
     return del([outputLocation + '/**/*']);
 }
 
-function cleanInstall() {
+function purgeNodeModules() {
     return new Promise((res, rej) => {
         if (_PROD) del('./node_modules/**/*');
         res();
@@ -98,8 +98,7 @@ function watchSource() {
 exports.build = series(
     cleanup,
     parallel(copyAssets, compileSass, compileTs),
-    buildHtml,
-    cleanInstall
+    buildHtml
 );
 exports.watch = series(
     cleanup,
@@ -109,4 +108,4 @@ exports.watch = series(
     buildHtml,
     watchSource
 );
-exports.clean = cleanup;
+exports.clean = purgeNodeModules;
