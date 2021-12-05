@@ -1,3 +1,5 @@
+import { timers } from '../data/_timers.data';
+import { TargetTimer } from '../models/targetTimer.model';
 import { EventBlock } from './_event';
 import { SitePlugin } from './_plugin';
 import { Timer } from './_timer';
@@ -6,12 +8,14 @@ declare var __VERSION: string;
 export class Site {
     private plugins: SitePlugin[] = [new Timer(), new EventBlock()];
     private versionEl: HTMLElement = document.getElementById('version');
+    private timers: TargetTimer[] = [];
 
     constructor() {}
 
     public init(): void {
+        this.timers = timers;
         this.displayVersion();
-        this.setDate();
+        this.setDate(this.timers[0].date);
 
         this.startPlugins();
 
@@ -26,7 +30,7 @@ export class Site {
         this.versionEl.innerHTML = 'v' + __VERSION;
     }
 
-    private setDate(): void {
-        localStorage.setItem('targetDate', '29 December 2021 12:05 GMT');
+    private setDate(date: string): void {
+        localStorage.setItem('targetDate', date);
     }
 }
