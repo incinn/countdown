@@ -1,7 +1,7 @@
 import { TargetTimer } from '../models/targetTimer.model';
 
 const BelgiumTrip: TargetTimer = {
-    date: '29 December 2021 12:05 GMT',
+    date: '29 December 2021 12:05 UTC+1',
     specialNumber: 22,
     specialNumberConfetti: {
         emojis: ['😘', '😍', '❤️', '🍩', '🍊', '😏'],
