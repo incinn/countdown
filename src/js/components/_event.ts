@@ -1,4 +1,4 @@
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import { SitePlugin } from './_plugin';
 
 const months = [
@@ -17,7 +17,6 @@ const months = [
 ];
 
 export class EventBlock extends SitePlugin {
-    private date: Dayjs;
     private dateEl: HTMLElement;
 
     constructor() {
