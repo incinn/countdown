@@ -10,7 +10,15 @@ export class Site {
     private versionEl: HTMLElement = document.getElementById('version');
     private timers: TargetTimer[] = [];
 
-    constructor() {}
+    constructor() {
+        try {
+            localStorage.setItem('test', 'test');
+            localStorage.removeItem('test');
+        } catch (e) {
+            this.init = () => {};
+            console.error('LocalStorage unavailable');
+        }
+    }
 
     public init(): void {
         this.timers = timers;
