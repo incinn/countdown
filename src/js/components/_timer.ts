@@ -3,6 +3,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import duration from 'dayjs/plugin/duration';
 import JSConfetti from 'js-confetti';
 import { SitePlugin } from './_plugin';
+import { TargetTimer } from '../models/targetTimer.model';
 
 interface CountdownTimer {
     years: number;
@@ -15,8 +16,9 @@ interface CountdownTimer {
 
 export class Timer extends SitePlugin {
     private countdownEl: HTMLElement;
-    private timer: any;
+    private _timer: any;
     private confetti: JSConfetti;
+    private data: TargetTimer;
 
     constructor() {
         super();
@@ -34,12 +36,14 @@ export class Timer extends SitePlugin {
     }
 
     public init(): void {
+        this.data = this.getTimerData();
+
         this.updateTimer();
-        this.timer = setInterval(() => this.updateTimer(), 1000);
+        this._timer = setInterval(() => this.updateTimer(), 1000);
     }
 
     private updateTimer(): void {
-        const timer = this.calculate(this.getDate());
+        const timer = this.calculate(this.data.date);
 
         let output = '';
 
@@ -58,7 +62,7 @@ export class Timer extends SitePlugin {
             timer.minutes <= 0 &&
             timer.seconds <= 0
         ) {
-            output = '<span class="completed">Arrived</span>';
+            output = `<span class="completed">${this.data.successText}</span>`;
             this.timerComplete();
         }
         this.countdownEl.innerHTML = output.trim();
@@ -86,14 +90,9 @@ export class Timer extends SitePlugin {
 
         if (time != 1) text += 's';
 
-        if (time === 22) {
+        if (time === this.data.specialNumber) {
             output += `<span class="highlight">${time}</span> `;
-            this.confetti.addConfetti({
-                emojis: ['😘', '😍', '❤️', '🍩', '🍊', '😏'],
-                emojiSize: 25,
-                confettiRadius: 30,
-                confettiNumber: 7,
-            });
+            this.confetti.addConfetti(this.data.specialNumberConfetti);
         } else output += `${time} `;
 
         output += `<span class="text">${text}</span></div>`;
@@ -102,15 +101,9 @@ export class Timer extends SitePlugin {
     }
 
     private timerComplete(): void {
-        clearInterval(this.timer);
-        this.timer = setInterval(
-            () =>
-                this.confetti.addConfetti({
-                    emojis: ['😘', '😍', '❤️', '❤️', '❤️', '🍩', '🍊', '😏'],
-                    emojiSize: 25,
-                    confettiRadius: 30,
-                    confettiNumber: 50,
-                }),
+        clearInterval(this._timer);
+        this._timer = setInterval(
+            () => this.confetti.addConfetti(this.data.successConfetti),
             2200
         );
     }
