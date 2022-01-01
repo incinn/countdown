@@ -13,11 +13,12 @@ export class SitePlugin {
     public getTimerData(): TargetTimer {
         return {
             date: this.getDate(),
+            description: localStorage.getItem('descriptionText'),
             specialNumber: parseInt(localStorage.getItem('specialNumber')),
             specialNumberConfetti: JSON.parse(
                 localStorage.getItem('specialNumberConfetti')
             ) as TimerConfetti,
-            successText: '',
+            successText: localStorage.getItem('successText'),
             successConfetti: JSON.parse(
                 localStorage.getItem('successConfetti')
             ) as TimerConfetti,

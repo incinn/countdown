@@ -52,5 +52,6 @@ export class Site {
             'successConfetti',
             JSON.stringify(timer.successConfetti)
         );
+        localStorage.setItem('descriptionText', timer.description);
     }
 }
