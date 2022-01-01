@@ -10,7 +10,7 @@ const TwentyTwo: TargetTimer = {
         confettiRadius: 30,
         confettiNumber: 7,
     },
-    successText: 'YAY TWENTY TWO!!! ❤️',
+    successText: '❤️ HAPPY TWENTY TWO DAY!!! ❤️',
     successConfetti: {
         emojis: ['😘', '😍', '❤️', '❤️', '❤️', '🍩', '🍊', '😏'],
         emojiSize: 25,
