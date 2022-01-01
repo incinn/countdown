@@ -33,7 +33,7 @@
             }
 
             @include for-mobile {
-                width: 300px;
+                width: 250px;
                 display: flex;
                 flex-direction: row-reverse;
                 justify-content: space-between;

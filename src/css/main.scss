@@ -30,6 +30,10 @@ body {
     background-size: 200%;
     animation: aurora 15s infinite;
 
+    @include for-mobile {
+        font-size: 14px;
+    }
+
     .wrapper {
         display: flex;
         align-items: center;
