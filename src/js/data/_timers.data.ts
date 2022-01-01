@@ -21,8 +21,8 @@ const BelgiumTrip: TargetTimer = {
 
 const Christmas: TargetTimer = {
     date: '25 December 2022 00:00 GMT',
-    description: 'Christmas 2022! 🎄',
-    specialNumber: 0,
+    description: 'Christmas 2022 🎄',
+    specialNumber: 22,
     specialNumberConfetti: {
         emojis: ['🎄', '🎅', '🎁', '❄️', '⛄'],
         emojiSize: 25,
@@ -31,7 +31,7 @@ const Christmas: TargetTimer = {
     },
     successText: '🎄 Merry Christmas! ⛄',
     successConfetti: {
-        emojis: ['🎄', '🎅', '🎁', '❄️', '⛄'],
+        emojis: ['🎄', '🎅', '🎁', '🎁', '🎁', '❄️', '⛄'],
         emojiSize: 25,
         confettiRadius: 30,
         confettiNumber: 50,
