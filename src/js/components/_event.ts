@@ -1,4 +1,4 @@
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import { SitePlugin } from './_plugin';
 
 const months = [
@@ -17,22 +17,24 @@ const months = [
 ];
 
 export class EventBlock extends SitePlugin {
-    private date: Dayjs;
     private dateEl: HTMLElement;
+    private descriptionEl: HTMLElement;
 
     constructor() {
         super();
 
         this.dateEl = document.getElementById('date');
+        this.descriptionEl = document.getElementById('description');
 
-        if (!this.dateEl) {
-            console.error('Unable to start date');
+        if (!this.dateEl || !this.descriptionEl) {
+            console.error('Unable find event elements');
             this.init = () => {};
         }
     }
 
     public init(): void {
         this.updateDate();
+        this.updateDescription();
     }
 
     private updateDate(): void {
@@ -50,5 +52,11 @@ export class EventBlock extends SitePlugin {
         day.innerHTML = date.date().toString();
         month.innerHTML = months[date.month()];
         year.innerHTML = date.year().toString();
+    }
+
+    private updateDescription(): void {
+        const data = this.getTimerData();
+
+        this.descriptionEl.innerHTML = data.description;
     }
 }
