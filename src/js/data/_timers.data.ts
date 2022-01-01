@@ -1,8 +1,8 @@
 import { TargetTimer } from '../models/targetTimer.model';
 
-const BelgiumTrip: TargetTimer = {
-    date: '29 December 2021 12:05 UTC+1',
-    description: 'Belgium Trip!!',
+const TwentyTwo: TargetTimer = {
+    date: '22 February 2022 22:22',
+    description: '22/02/2022 22:22 🍩❤️',
     specialNumber: 22,
     specialNumberConfetti: {
         emojis: ['😘', '😍', '❤️', '🍩', '🍊', '😏'],
@@ -10,7 +10,7 @@ const BelgiumTrip: TargetTimer = {
         confettiRadius: 30,
         confettiNumber: 7,
     },
-    successText: 'Arrived!!!',
+    successText: 'YAY TWENTY TWO!!! ❤️',
     successConfetti: {
         emojis: ['😘', '😍', '❤️', '❤️', '❤️', '🍩', '🍊', '😏'],
         emojiSize: 25,
@@ -38,4 +38,4 @@ const Christmas: TargetTimer = {
     },
 };
 
-export const timers: TargetTimer[] = [BelgiumTrip, Christmas];
+export const timers: TargetTimer[] = [TwentyTwo, Christmas];
