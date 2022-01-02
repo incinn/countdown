@@ -9,6 +9,8 @@ const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const del = require('del');
+const replace = require('gulp-replace');
+const fs = require('fs');
 
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
@@ -82,7 +84,17 @@ function compileTs() {
 }
 
 function buildHtml() {
-    return src(htmlLocation).pipe(dest(outputLocation));
+    return src(htmlLocation)
+        .pipe(
+            replace('%STYLESHEET%', () => {
+                const stylesheet = fs.readFileSync(
+                    outputLocation + '/main.css',
+                    'utf8'
+                );
+                return `<style type="text/css">\n${stylesheet}</style>`;
+            })
+        )
+        .pipe(dest(outputLocation));
 }
 
 function copyAssets() {
