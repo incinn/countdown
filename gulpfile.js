@@ -102,7 +102,7 @@ function copyAssets() {
 }
 
 function watchSource() {
-    watch('./src/css/**/*.scss', compileSass);
+    watch('./src/css/**/*.scss', series(compileSass, buildHtml));
     watch('./src/js/**/*.ts', compileTs);
     watch(htmlLocation, buildHtml);
 }
