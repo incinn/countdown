@@ -2,7 +2,9 @@ import { TimerConfetti } from '../models/confetti.model';
 import { TargetTimer } from '../models/targetTimer.model';
 
 export class SitePlugin {
-    constructor() {}
+    constructor() {
+        document.addEventListener('changedTimer', () => this.init());
+    }
 
     public init(): void {}
 

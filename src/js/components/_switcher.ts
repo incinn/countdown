@@ -50,6 +50,9 @@ export class Switcher extends SitePlugin {
         console.log('click', index);
 
         this.setStorage(this.timers[index]);
+
+        const changedTimerEvent = new CustomEvent('changedTimer');
+        document.dispatchEvent(changedTimerEvent);
     }
 
     private setStorage(timer: TargetTimer): void {
