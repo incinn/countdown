@@ -3,6 +3,7 @@ import { TargetTimer } from '../models/targetTimer.model';
 const TwentyTwo: TargetTimer = {
     date: '22 February 2022 22:22',
     description: '22/02/2022 22:22 🍩❤️',
+    menuText: '22 Day 🍩',
     specialNumber: 22,
     specialNumberConfetti: {
         emojis: ['😘', '😍', '❤️', '🍩', '🍊', '😏'],
@@ -22,6 +23,7 @@ const TwentyTwo: TargetTimer = {
 const Christmas: TargetTimer = {
     date: '25 December 2022 00:00 GMT',
     description: 'Christmas 2022 🎄',
+    menuText: 'Christmas 🎄',
     specialNumber: 22,
     specialNumberConfetti: {
         emojis: ['🎄', '🎅', '🎁', '❄️', '⛄'],

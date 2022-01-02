@@ -16,6 +16,7 @@ export class SitePlugin {
         return {
             date: this.getDate(),
             description: localStorage.getItem('descriptionText'),
+            menuText: localStorage.getItem('menuText'),
             specialNumber: parseInt(localStorage.getItem('specialNumber')),
             specialNumberConfetti: JSON.parse(
                 localStorage.getItem('specialNumberConfetti')

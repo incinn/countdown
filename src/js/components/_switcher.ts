@@ -32,7 +32,7 @@ export class Switcher extends SitePlugin {
             let li = document.createElement('li');
             let button = document.createElement('button');
 
-            button.innerText = timer.description;
+            button.innerText = timer.menuText;
             button.dataset.index = '' + index;
 
             button.addEventListener('click', (e) =>
@@ -64,6 +64,7 @@ export class Switcher extends SitePlugin {
                 'specialNumberConfetti',
                 JSON.stringify(timer.specialNumberConfetti)
             );
+        localStorage.setItem('menuText', timer.menuText);
         localStorage.setItem('successText', timer.successText);
         localStorage.setItem(
             'successConfetti',
