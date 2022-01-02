@@ -1,0 +1,35 @@
+.switcher {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    ul {
+        display: flex;
+        justify-content: space-evenly;
+
+        li {
+            flex: 1;
+        }
+    }
+
+    button {
+        width: 100%;
+        cursor: pointer;
+        font-size: 0.75rem;
+        font-weight: bold;
+        color: var(--light);
+        background-color: rgba(black, 0.05);
+        border: none;
+        padding: 0.75rem 1rem;
+        transition: background-color 250ms;
+
+        &:hover {
+            background-color: rgba(black, 0.15);
+        }
+
+        &:active {
+            background-color: rgba(black, 0.25);
+        }
+    }
+}
