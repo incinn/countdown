@@ -21,7 +21,35 @@ export class Switcher extends SitePlugin {
     }
 
     public init(): void {
+        this.buildSwitcherList();
         this.setStorage(this.timers[0]);
+    }
+
+    private buildSwitcherList(): void {
+        this.switcherListEl.innerHTML = '';
+
+        this.timers.forEach((timer: TargetTimer, index) => {
+            let li = document.createElement('li');
+            let button = document.createElement('button');
+
+            button.innerText = timer.description;
+            button.dataset.index = '' + index;
+
+            button.addEventListener('click', (e) =>
+                this.handleSwitcherClick(e)
+            );
+
+            li.appendChild(button);
+
+            this.switcherListEl.appendChild(li);
+        });
+    }
+
+    private handleSwitcherClick(event): void {
+        const index = event.target.dataset.index;
+        console.log('click', index);
+
+        this.setStorage(this.timers[index]);
     }
 
     private setStorage(timer: TargetTimer): void {
