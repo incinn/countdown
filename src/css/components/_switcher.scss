@@ -5,6 +5,10 @@
     left: 0;
     border-bottom: 1px solid rgba(black, 0.075);
 
+    @include for-mobile {
+        display: none;
+    }
+
     ul {
         display: flex;
         justify-content: space-evenly;
