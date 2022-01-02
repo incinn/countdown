@@ -2,11 +2,16 @@ import { timers } from '../data/_timers.data';
 import { TargetTimer } from '../models/targetTimer.model';
 import { EventBlock } from './_event';
 import { SitePlugin } from './_plugin';
+import { Switcher } from './_switcher';
 import { Timer } from './_timer';
 declare var __VERSION: string;
 
 export class Site {
-    private plugins: SitePlugin[] = [new Timer(), new EventBlock()];
+    private plugins: SitePlugin[] = [
+        new Timer(),
+        new EventBlock(),
+        new Switcher(),
+    ];
     private versionEl: HTMLElement = document.getElementById('version');
     private timers: TargetTimer[] = [];
 
