@@ -42,6 +42,10 @@ export class Timer extends SitePlugin {
         this._timer = setInterval(() => this.updateTimer(), 1000);
     }
 
+    public rebuild(): void {
+        this.init();
+    }
+
     private updateTimer(): void {
         const timer = this.calculate(this.data.date);
 

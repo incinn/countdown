@@ -3,10 +3,12 @@ import { TargetTimer } from '../models/targetTimer.model';
 
 export class SitePlugin {
     constructor() {
-        document.addEventListener('changedTimer', () => this.init());
+        document.addEventListener('changedTimer', () => this.rebuild());
     }
 
     public init(): void {}
+
+    public rebuild(): void {}
 
     public getDate(): string {
         return localStorage.getItem('targetDate');

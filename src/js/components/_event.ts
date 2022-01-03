@@ -37,6 +37,10 @@ export class EventBlock extends SitePlugin {
         this.updateDescription();
     }
 
+    public rebuild(): void {
+        this.init();
+    }
+
     private updateDate(): void {
         const date = dayjs(this.getDate());
 
