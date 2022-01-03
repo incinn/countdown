@@ -24,7 +24,7 @@ const Christmas: TargetTimer = {
     date: '25 December 2022 00:00 GMT',
     description: 'Christmas 2022 🎄',
     menuText: 'Christmas 🎄',
-    specialNumber: 22,
+    specialNumber: 25,
     specialNumberConfetti: {
         emojis: ['🎄', '🎅', '🎁', '❄️', '⛄'],
         emojiSize: 25,
