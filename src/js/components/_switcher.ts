@@ -22,7 +22,21 @@ export class Switcher extends SitePlugin {
 
     public init(): void {
         this.buildSwitcherList();
-        this.setStorage(this.timers[0]);
+        this.setActive(0);
+    }
+
+    public setActive(index: number): void {
+        index = +index; // make sure the damn thing is a number
+        this.setStorage(this.timers[index]);
+
+        for (let i = 0; i < this.switcherListEl.children.length; i++) {
+            let el = this.switcherListEl.children[i];
+            el.classList.remove('active');
+
+            if (index === i) {
+                el.classList.add('active');
+            }
+        }
     }
 
     private buildSwitcherList(): void {
@@ -47,9 +61,8 @@ export class Switcher extends SitePlugin {
 
     private handleSwitcherClick(event): void {
         const index = event.target.dataset.index;
-        console.log('click', index);
 
-        this.setStorage(this.timers[index]);
+        this.setActive(index);
 
         const changedTimerEvent = new CustomEvent('changedTimer');
         document.dispatchEvent(changedTimerEvent);

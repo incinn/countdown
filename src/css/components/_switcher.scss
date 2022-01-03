@@ -1,9 +1,11 @@
 .switcher {
+    $indicatorHeight: 3px;
+
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
-    border-bottom: 1px solid rgba(black, 0.075);
+    border-bottom: 1px solid rgba(white, 0.075);
 
     @include for-mobile {
         display: none;
@@ -15,6 +17,10 @@
 
         li {
             flex: 1;
+
+            &.active button {
+                border-color: rgba(white, 0.1);
+            }
         }
     }
 
@@ -24,17 +30,19 @@
         font-size: 0.75rem;
         font-weight: bold;
         color: var(--light);
-        background-color: rgba(black, 0.05);
+        background-color: rgba(white, 0.05);
         border: none;
-        padding: 0.75rem 1rem;
-        transition: background-color var(--transition);
+        border-bottom: $indicatorHeight solid transparent;
+        padding: calc(0.75rem + $indicatorHeight) 1rem 0.75rem 1rem;
+        transition: background-color var(--transition),
+            border-color var(--transition);
 
         &:hover {
-            background-color: rgba(black, 0.15);
+            background-color: rgba(white, 0.15);
         }
 
         &:active {
-            background-color: rgba(black, 0.25);
+            background-color: rgba(white, 0.25);
         }
     }
 }
