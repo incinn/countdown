@@ -40,6 +40,27 @@ const TwentyTwo: TargetTimer = {
     },
 };
 
+const BETrip: TargetTimer = {
+    date: '28 April 2022 15:00',
+    description: 'Belgium Trip 🍊 ❤️ 🍩',
+    menuText: '🇧🇪 ❤️ 🍩',
+    specialNumber: 23,
+    specialNumberConfetti: {
+        emojis: ['😘', '😍', '❤️', '🍩', '🍊', '😏'],
+        emojiSize: 25,
+        confettiRadius: 30,
+        confettiNumber: 7,
+    },
+    successText:
+        'OMG BABE I SEE YOU!!! *pokes* 😍<br />I LOVE YOU MORE THAN ANYTHING!!<br />❤️❤️❤️❤️❤️❤️❤️❤️',
+    successConfetti: {
+        emojis: ['😘', '❤️', '❤️', '❤️', '🍩', '🍊', '😏'],
+        emojiSize: 25,
+        confettiRadius: 50,
+        confettiNumber: 50,
+    },
+};
+
 const Christmas: TargetTimer = {
     date: '25 December 2022 00:00 GMT',
     description: 'Christmas 2022 🎄',
@@ -60,4 +81,4 @@ const Christmas: TargetTimer = {
     },
 };
 
-export const timers: TargetTimer[] = [TwentyTwo, SummerSolstice, Christmas];
+export const timers: TargetTimer[] = [BETrip, SummerSolstice, Christmas];
