@@ -59,6 +59,8 @@ export class Timer extends SitePlugin {
         output += this.formatSegment(timer.minutes, 'minute');
         output += this.formatSegment(timer.seconds, 'second');
 
+        this.countdownEl.innerHTML = output.trim();
+
         if (
             timer.years <= 0 &&
             timer.days <= 0 &&
@@ -66,10 +68,14 @@ export class Timer extends SitePlugin {
             timer.minutes <= 0 &&
             timer.seconds <= 0
         ) {
-            output = `<span class="completed">${this.data.successText}</span>`;
+            const successTextEl = document.createElement('span');
+            successTextEl.classList.add('completed');
+            successTextEl.innerHTML = this.data.successText;
+
+            this.countdownEl.innerHTML = '';
+            this.countdownEl.appendChild(successTextEl);
             this.timerComplete();
         }
-        this.countdownEl.innerHTML = output.trim();
     }
 
     private calculate(target: string): CountdownTimer {
