@@ -38,11 +38,12 @@ export class Timer extends SitePlugin {
     public init(): void {
         this.data = this.getTimerData();
 
-        this.updateTimer();
         this._timer = setInterval(() => this.updateTimer(), 1000);
+        this.updateTimer();
     }
 
     public rebuild(): void {
+        clearInterval(this._timer);
         this.init();
     }
 
