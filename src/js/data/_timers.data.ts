@@ -41,7 +41,7 @@ const TwentyTwo: TargetTimer = {
 };
 
 const BETrip: TargetTimer = {
-    date: '28 April 2022 15:00',
+    date: '28 April 2022 15:00 UTC+2',
     description: 'Belgium Trip 🍊 ❤️ 🍩',
     menuText: '🇧🇪 ❤️ 🍩',
     specialNumber: 23,
