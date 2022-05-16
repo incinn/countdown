@@ -6,9 +6,9 @@ declare var __VERSION: string;
 
 export class Site {
     private plugins: SitePlugin[] = [
+        new Switcher(),
         new Timer(),
         new EventBlock(),
-        new Switcher(),
     ];
     private versionEl: HTMLElement = document.getElementById('version');
 
