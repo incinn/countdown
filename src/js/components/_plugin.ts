@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { TimerConfetti } from '../models/confetti.model';
 import { TargetTimer } from '../models/targetTimer.model';
 

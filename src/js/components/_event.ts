@@ -28,6 +28,7 @@ export class EventBlock extends SitePlugin {
 
         if (!this.dateEl || !this.descriptionEl) {
             console.error('Unable find event elements');
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
             this.init = () => {};
         }
     }
