@@ -20,25 +20,25 @@ const SummerSolstice: TargetTimer = {
     },
 };
 
-const TwentyTwo: TargetTimer = {
-    date: '22 February 2022 22:22',
-    description: '22/02/2022 22:22 🍩❤️',
-    menuText: '22 Day 🍩',
-    specialNumber: 22,
-    specialNumberConfetti: {
-        emojis: ['😘', '😍', '❤️', '🍩', '🍊', '😏'],
-        emojiSize: 25,
-        confettiRadius: 30,
-        confettiNumber: 7,
-    },
-    successText: '❤️ HAPPY TWENTY TWO DAY!!! ❤️',
-    successConfetti: {
-        emojis: ['😘', '😍', '❤️', '❤️', '❤️', '🍩', '🍊', '😏'],
-        emojiSize: 25,
-        confettiRadius: 30,
-        confettiNumber: 50,
-    },
-};
+// const TwentyTwo: TargetTimer = {
+//     date: '22 February 2022 22:22',
+//     description: '22/02/2022 22:22 🍩❤️',
+//     menuText: '22 Day 🍩',
+//     specialNumber: 22,
+//     specialNumberConfetti: {
+//         emojis: ['😘', '😍', '❤️', '🍩', '🍊', '😏'],
+//         emojiSize: 25,
+//         confettiRadius: 30,
+//         confettiNumber: 7,
+//     },
+//     successText: '❤️ HAPPY TWENTY TWO DAY!!! ❤️',
+//     successConfetti: {
+//         emojis: ['😘', '😍', '❤️', '❤️', '❤️', '🍩', '🍊', '😏'],
+//         emojiSize: 25,
+//         confettiRadius: 30,
+//         confettiNumber: 50,
+//     },
+// };
 
 const BETrip: TargetTimer = {
     date: '02 July 2022 16:05 UTC+2',
