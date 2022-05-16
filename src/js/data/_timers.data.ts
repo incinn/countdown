@@ -41,9 +41,9 @@ const TwentyTwo: TargetTimer = {
 };
 
 const BETrip: TargetTimer = {
-    date: '28 April 2022 15:00 UTC+2',
-    description: 'Belgium Trip 🍊 ❤️ 🍩',
-    menuText: '🇧🇪 ❤️ 🍩',
+    date: '02 July 2022 16:05 UTC+2',
+    description: 'Belgium Trip #2 🍊 ❤️ 🍩',
+    menuText: 'Belgium ❤️',
     specialNumber: 23,
     specialNumberConfetti: {
         emojis: ['😘', '😍', '❤️', '🍩', '🍊', '😏'],
@@ -52,12 +52,12 @@ const BETrip: TargetTimer = {
         confettiNumber: 7,
     },
     successText:
-        'OMG BABE I SEE YOU!!! *pokes* 😍<br />I LOVE YOU MORE THAN ANYTHING!!<br />❤️❤️❤️❤️❤️❤️❤️❤️',
+        'BABY OMG I SEE YOU *AGAIN*!!!<br />I MISSED YOU SO MUCH!!!<br />❤️❤️❤️❤️❤️❤️❤️❤️',
     successConfetti: {
         emojis: ['😘', '❤️', '❤️', '❤️', '🍩', '🍊', '😏'],
         emojiSize: 25,
         confettiRadius: 50,
-        confettiNumber: 50,
+        confettiNumber: 130,
     },
 };
 
