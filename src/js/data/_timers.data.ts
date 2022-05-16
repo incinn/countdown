@@ -20,30 +20,30 @@ const SummerSolstice: TargetTimer = {
     },
 };
 
-const TwentyTwo: TargetTimer = {
-    date: '22 February 2022 22:22',
-    description: '22/02/2022 22:22 🍩❤️',
-    menuText: '22 Day 🍩',
-    specialNumber: 22,
-    specialNumberConfetti: {
-        emojis: ['😘', '😍', '❤️', '🍩', '🍊', '😏'],
-        emojiSize: 25,
-        confettiRadius: 30,
-        confettiNumber: 7,
-    },
-    successText: '❤️ HAPPY TWENTY TWO DAY!!! ❤️',
-    successConfetti: {
-        emojis: ['😘', '😍', '❤️', '❤️', '❤️', '🍩', '🍊', '😏'],
-        emojiSize: 25,
-        confettiRadius: 30,
-        confettiNumber: 50,
-    },
-};
+// const TwentyTwo: TargetTimer = {
+//     date: '22 February 2022 22:22',
+//     description: '22/02/2022 22:22 🍩❤️',
+//     menuText: '22 Day 🍩',
+//     specialNumber: 22,
+//     specialNumberConfetti: {
+//         emojis: ['😘', '😍', '❤️', '🍩', '🍊', '😏'],
+//         emojiSize: 25,
+//         confettiRadius: 30,
+//         confettiNumber: 7,
+//     },
+//     successText: '❤️ HAPPY TWENTY TWO DAY!!! ❤️',
+//     successConfetti: {
+//         emojis: ['😘', '😍', '❤️', '❤️', '❤️', '🍩', '🍊', '😏'],
+//         emojiSize: 25,
+//         confettiRadius: 30,
+//         confettiNumber: 50,
+//     },
+// };
 
 const BETrip: TargetTimer = {
-    date: '28 April 2022 15:00 UTC+2',
-    description: 'Belgium Trip 🍊 ❤️ 🍩',
-    menuText: '🇧🇪 ❤️ 🍩',
+    date: '02 July 2022 16:05 UTC+2',
+    description: 'Belgium Trip #2 🍊 ❤️ 🍩',
+    menuText: 'Belgium ❤️',
     specialNumber: 23,
     specialNumberConfetti: {
         emojis: ['😘', '😍', '❤️', '🍩', '🍊', '😏'],
@@ -52,12 +52,12 @@ const BETrip: TargetTimer = {
         confettiNumber: 7,
     },
     successText:
-        'OMG BABE I SEE YOU!!! *pokes* 😍<br />I LOVE YOU MORE THAN ANYTHING!!<br />❤️❤️❤️❤️❤️❤️❤️❤️',
+        'BABY OMG I SEE YOU *AGAIN*!!!<br />I MISSED YOU SO MUCH!!!<br />❤️❤️❤️❤️❤️❤️❤️❤️',
     successConfetti: {
         emojis: ['😘', '❤️', '❤️', '❤️', '🍩', '🍊', '😏'],
         emojiSize: 25,
         confettiRadius: 50,
-        confettiNumber: 50,
+        confettiNumber: 130,
     },
 };
 

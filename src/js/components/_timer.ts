@@ -31,6 +31,7 @@ export class Timer extends SitePlugin {
 
         if (!this.countdownEl || !this.confetti) {
             console.error('Unable to start timer');
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
             this.init = () => {};
         }
     }

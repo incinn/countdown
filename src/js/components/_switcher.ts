@@ -16,6 +16,7 @@ export class Switcher extends SitePlugin {
 
         if (!this.timers || !this.switcherListEl) {
             console.error('Cannot start switcher');
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
             this.init = () => {};
         }
     }
@@ -30,7 +31,7 @@ export class Switcher extends SitePlugin {
         this.setStorage(this.timers[index]);
 
         for (let i = 0; i < this.switcherListEl.children.length; i++) {
-            let el = this.switcherListEl.children[i];
+            const el = this.switcherListEl.children[i];
             el.classList.remove('active');
 
             if (index === i) {
@@ -43,8 +44,8 @@ export class Switcher extends SitePlugin {
         this.switcherListEl.innerHTML = '';
 
         this.timers.forEach((timer: TargetTimer, index) => {
-            let li = document.createElement('li');
-            let button = document.createElement('button');
+            const li = document.createElement('li');
+            const button = document.createElement('button');
 
             button.innerText = timer.menuText;
             button.dataset.index = '' + index;
@@ -59,10 +60,10 @@ export class Switcher extends SitePlugin {
         });
     }
 
-    private handleSwitcherClick(event): void {
-        const index = event.target.dataset.index;
+    private handleSwitcherClick(event: Event): void {
+        const index = (<HTMLButtonElement>event.target).dataset.index;
 
-        this.setActive(index);
+        this.setActive(+index);
 
         const changedTimerEvent = new CustomEvent('changedTimer');
         document.dispatchEvent(changedTimerEvent);

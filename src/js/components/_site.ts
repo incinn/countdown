@@ -2,13 +2,13 @@ import { EventBlock } from './_event';
 import { SitePlugin } from './_plugin';
 import { Switcher } from './_switcher';
 import { Timer } from './_timer';
-declare var __VERSION: string;
+declare let __VERSION: string;
 
 export class Site {
     private plugins: SitePlugin[] = [
+        new Switcher(),
         new Timer(),
         new EventBlock(),
-        new Switcher(),
     ];
     private versionEl: HTMLElement = document.getElementById('version');
 
@@ -17,6 +17,7 @@ export class Site {
             localStorage.setItem('test', 'test');
             localStorage.removeItem('test');
         } catch (e) {
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
             this.init = () => {};
             console.error('LocalStorage unavailable');
         }
