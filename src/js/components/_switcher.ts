@@ -1,89 +1,96 @@
-import { timers } from '../data/_timers.data';
-import { TargetTimer } from '../models/targetTimer.model';
-import { SitePlugin } from './_plugin';
+import { timers } from "../data/_timers.data";
+import { TargetTimer } from "../models/targetTimer.model";
+import UrlParser from "../utils/urlParser";
+import { SitePlugin } from "./_plugin";
 
 export class Switcher extends SitePlugin {
-    private switcherListEl: HTMLUListElement;
-    private timers: TargetTimer[];
+  private switcherListEl: HTMLUListElement;
+  private timers: TargetTimer[];
+  private parser: UrlParser;
 
-    constructor() {
-        super();
+  constructor() {
+    super();
 
-        this.timers = timers;
-        this.switcherListEl = document.getElementById(
-            'switcherList'
-        ) as HTMLUListElement;
+    this.parser = new UrlParser();
+    this.timers = timers;
+    this.switcherListEl = document.getElementById(
+      "switcherList"
+    ) as HTMLUListElement;
 
-        if (!this.timers || !this.switcherListEl) {
-            console.error('Cannot start switcher');
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
-            this.init = () => {};
-        }
+    if (!this.timers || !this.switcherListEl) {
+      console.error("Cannot start switcher");
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      this.init = () => { };
     }
+  }
 
-    public init(): void {
-        this.buildSwitcherList();
-        this.setActive(0);
+  public init(): void {
+    this.parseUrl();
+    this.buildSwitcherList();
+    this.setActive(0);
+  }
+
+  public setActive(index: number): void {
+    index = +index; // make sure the damn thing is a number
+    this.setStorage(this.timers[index]);
+
+    for (let i = 0; i < this.switcherListEl.children.length; i++) {
+      const el = this.switcherListEl.children[i];
+      el.classList.remove("active");
+
+      if (index === i) {
+        el.classList.add("active");
+      }
     }
+  }
 
-    public setActive(index: number): void {
-        index = +index; // make sure the damn thing is a number
-        this.setStorage(this.timers[index]);
+  private buildSwitcherList(): void {
+    this.switcherListEl.innerHTML = "";
 
-        for (let i = 0; i < this.switcherListEl.children.length; i++) {
-            const el = this.switcherListEl.children[i];
-            el.classList.remove('active');
+    this.timers.forEach((timer: TargetTimer, index) => {
+      const li = document.createElement("li");
+      const button = document.createElement("button");
 
-            if (index === i) {
-                el.classList.add('active');
-            }
-        }
-    }
+      button.innerText = timer.menuText;
+      button.dataset.index = "" + index;
 
-    private buildSwitcherList(): void {
-        this.switcherListEl.innerHTML = '';
+      button.addEventListener("click", (e) => this.handleSwitcherClick(e));
 
-        this.timers.forEach((timer: TargetTimer, index) => {
-            const li = document.createElement('li');
-            const button = document.createElement('button');
+      li.appendChild(button);
 
-            button.innerText = timer.menuText;
-            button.dataset.index = '' + index;
+      this.switcherListEl.appendChild(li);
+    });
+  }
 
-            button.addEventListener('click', (e) =>
-                this.handleSwitcherClick(e)
-            );
+  private handleSwitcherClick(event: Event): void {
+    const index = (<HTMLButtonElement>event.target).dataset.index;
 
-            li.appendChild(button);
+    this.setActive(+index);
 
-            this.switcherListEl.appendChild(li);
-        });
-    }
+    const changedTimerEvent = new CustomEvent("changedTimer");
+    document.dispatchEvent(changedTimerEvent);
+  }
 
-    private handleSwitcherClick(event: Event): void {
-        const index = (<HTMLButtonElement>event.target).dataset.index;
+  private setStorage(timer: TargetTimer): void {
+    localStorage.setItem("targetDate", timer.date);
+    if (timer.specialNumber)
+      localStorage.setItem("specialNumber", "" + timer.specialNumber);
+    if (timer.specialNumberConfetti)
+      localStorage.setItem(
+        "specialNumberConfetti",
+        JSON.stringify(timer.specialNumberConfetti)
+      );
+    localStorage.setItem("menuText", timer.menuText);
+    localStorage.setItem("successText", timer.successText);
+    localStorage.setItem(
+      "successConfetti",
+      JSON.stringify(timer.successConfetti)
+    );
+    localStorage.setItem("descriptionText", timer.description);
+  }
 
-        this.setActive(+index);
-
-        const changedTimerEvent = new CustomEvent('changedTimer');
-        document.dispatchEvent(changedTimerEvent);
-    }
-
-    private setStorage(timer: TargetTimer): void {
-        localStorage.setItem('targetDate', timer.date);
-        if (timer.specialNumber)
-            localStorage.setItem('specialNumber', '' + timer.specialNumber);
-        if (timer.specialNumberConfetti)
-            localStorage.setItem(
-                'specialNumberConfetti',
-                JSON.stringify(timer.specialNumberConfetti)
-            );
-        localStorage.setItem('menuText', timer.menuText);
-        localStorage.setItem('successText', timer.successText);
-        localStorage.setItem(
-            'successConfetti',
-            JSON.stringify(timer.successConfetti)
-        );
-        localStorage.setItem('descriptionText', timer.description);
-    }
+  private parseUrl(): void {
+    const timer = this.parser.getTargetTimer();
+    if(timer) this.timers = [timer, ...this.timers];
+  }
 }
