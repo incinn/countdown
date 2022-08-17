@@ -11,6 +11,9 @@
 
     &__duration {
         display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
         font-size: 2rem;
         margin-bottom: 12vh;
         font-weight: bold;
@@ -53,6 +56,8 @@
         }
 
         .completed {
+            display: block;
+            width: 100%;
             animation: pulse-success 1s infinite ease-in-out;
             text-transform: uppercase;
             letter-spacing: 8px;
