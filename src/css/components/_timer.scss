@@ -1,63 +1,69 @@
 @import '../animations/pulse.anim';
 
 .timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__inner {
+    text-align: center;
+    margin-bottom: 12vh;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: monospace;
+  }
+
+  &__duration {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 
-    &__inner {
-        text-align: center;
+    @include for-mobile {
+      flex-direction: column;
+      align-items: center;
     }
 
-    &__duration {
-        display: flex;
-        font-size: 2rem;
-        margin-bottom: 12vh;
-        font-weight: bold;
-        font-family: monospace;
+    .segment {
+      text-shadow: 2px 2px var(--dark);
+
+      &:not(:last-of-type) {
+        margin-right: 1.75rem;
 
         @include for-mobile {
-            flex-direction: column;
-            align-items: center;
+          margin-right: 0;
         }
+      }
 
-        .segment {
-            text-shadow: 2px 2px var(--dark);
+      @include for-mobile {
+        width: 250px;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
 
-            &:not(:last-of-type) {
-                margin-right: 1.75rem;
-
-                @include for-mobile {
-                    margin-right: 0;
-                }
-            }
-
-            @include for-mobile {
-                width: 250px;
-                display: flex;
-                flex-direction: row-reverse;
-                justify-content: space-between;
-
-                &:not(:last-of-type) {
-                    margin-bottom: 0.75rem;
-                }
-            }
-
-            .text {
-                opacity: 0.6;
-            }
-
-            .highlight {
-                animation: pulse 1s infinite ease-in-out;
-            }
+        &:not(:last-of-type) {
+          margin-bottom: 0.75rem;
         }
+      }
 
-        .completed {
-            animation: pulse-success 1s infinite ease-in-out;
-            text-transform: uppercase;
-            letter-spacing: 8px;
-            line-height: 1.5;
-            text-shadow: 2px 2px var(--dark);
-        }
+      .text {
+        opacity: 0.6;
+      }
+
+      .highlight {
+        animation: pulse 1s infinite ease-in-out;
+      }
     }
+  }
+
+  .completed {
+    display: block;
+    width: 100%;
+    animation: pulse-success 1s infinite ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    line-height: 1.5;
+    text-shadow: 2px 2px var(--dark);
+    margin-top: 2rem;
+  }
 }
