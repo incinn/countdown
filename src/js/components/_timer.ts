@@ -59,16 +59,17 @@ export class Timer extends SitePlugin {
 
     let output = '';
 
-    if (timer.years > 0 || timer.years < -0.1) output += this.formatSegment(timer.years, 'year');
-    if (timer.months > 0 || timer.months < -0.1)
-      output += this.formatSegment(timer.months, 'month');
-    if (timer.days > 0 || timer.days < -0.1) output += this.formatSegment(timer.days, 'day');
-    if (timer.hours > 0 || timer.hours < -0.1) output += this.formatSegment(timer.hours, 'hour');
-    output += this.formatSegment(timer.minutes, 'minute');
-    output += this.formatSegment(timer.seconds, 'second');
+    if (timer.years > 0 || timer.years < 0) output += this.timerSegment(timer.years, 'year');
+    if (timer.months > 0 || timer.months < 0)
+      output += this.timerSegment(timer.months, 'month');
+    if (timer.days > 0 || timer.days < 0) output += this.timerSegment(timer.days, 'day');
+    if (timer.hours > 0 || timer.hours < 0) output += this.timerSegment(timer.hours, 'hour');
+    
+    output += this.timerSegment(timer.minutes, 'minute');
+    output += this.timerSegment(timer.seconds, 'second');
 
     if (this.isSuccess(timer)) {
-      output += `<div class="segment">ago</div>`;
+      output += this.segmentEl('ago');
       this.handleSuccess();
     }
 
@@ -76,8 +77,6 @@ export class Timer extends SitePlugin {
   }
 
   private isSuccess(timer: CountdownTimer): boolean {
-    console.log('success mins', timer.minutes);
-    console.log('success seconds', timer.seconds);
     return timer.minutes <= 0 && timer.seconds < 0;
   }
 
@@ -107,19 +106,20 @@ export class Timer extends SitePlugin {
     };
   }
 
-  private formatSegment(time: number, text: string): string {
+  private timerSegment(time: number, text: string): string {
     time = Math.abs(time);
-    let output = '<div class="segment">';
+
+    let out = this.segmentEl(time.toString());
 
     if (time != 1) text += 's';
 
     if (time === this.data.specialNumber) {
-      output += `<span class="highlight">${time}</span> `;
       this.confetti.addConfetti(this.data.specialNumberConfetti);
-    } else output += `${time} `;
+      return out + this.segmentEl(text, 'highlight');
+    } else return out + this.segmentEl(text, 'text');
+  }
 
-    output += `<span class="text">${text}</span></div>`;
-
-    return output;
+  private segmentEl(text: string, className?: string): string {
+    return `<div class="segment"><span class="${className}">${text}</span></div>`;
   }
 }
