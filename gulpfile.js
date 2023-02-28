@@ -1,19 +1,24 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 const _PROD = process.env.MODE === 'prod' ? true : false;
 
-const { src, dest, watch, series, parallel } = require('gulp');
-const Dotenv = require('dotenv-webpack');
-const gulpif = require('gulp-if');
-const sourcemaps = require('gulp-sourcemaps');
-const sass = require('gulp-sass')(require('sass'));
-const autoprefixer = require('gulp-autoprefixer');
-const cleanCSS = require('gulp-clean-css');
-const del = require('del');
-const replace = require('gulp-replace');
-const fs = require('fs');
+import gulp from 'gulp';
+import Dotenv from 'dotenv-webpack';
+import gulpif from 'gulp-if';
+import sourcemaps from 'gulp-sourcemaps';
+import gulpSass from 'gulp-sass';
+import sassPackage from 'sass';
+import autoprefixer from 'gulp-autoprefixer';
+import cleanCSS from 'gulp-clean-css';
+import { deleteAsync } from 'del';
+import replace from 'gulp-replace';
+import fs from 'fs';
+import webpack from 'webpack';
+import webpackStream from 'webpack-stream';
+import packageJson from './package.json' assert { type: 'json' };
 
-const webpack = require('webpack');
-const webpackStream = require('webpack-stream');
+const sass = gulpSass(sassPackage);
+const appVersion = packageJson.version;
 
 const outputLocation = './dist';
 const sassLocation = './src/css/main.scss';
@@ -22,102 +27,105 @@ const assetLocation = './src/assets/**/*.*';
 const tsLocation = './src/js/**/*.ts';
 
 function cleanup() {
-    return del([outputLocation + '/**/*']);
+  return deleteAsync([outputLocation + '/**/*']);
 }
 
 function purgeNodeModules() {
-    return new Promise((res, rej) => {
-        if (_PROD) del('./node_modules/**/*');
-        res();
-    });
+  return new Promise((res) => {
+    if (_PROD) del('./node_modules/**/*');
+    res();
+  });
 }
 
 function compileSass() {
-    return src(sassLocation)
-        .pipe(gulpif(!_PROD, sourcemaps.init()))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(
-            autoprefixer({
-                cascade: false,
-            })
-        )
-        .pipe(cleanCSS())
-        .pipe(gulpif(!_PROD, sourcemaps.write('.')))
-        .pipe(dest(outputLocation));
+  return gulp
+    .src(sassLocation)
+    .pipe(gulpif(!_PROD, sourcemaps.init()))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(
+      autoprefixer({
+        cascade: false,
+      })
+    )
+    .pipe(cleanCSS())
+    .pipe(gulpif(!_PROD, sourcemaps.write('.')))
+    .pipe(gulp.dest(outputLocation));
 }
 
 function compileTs() {
-    return src(tsLocation)
-        .pipe(
-            webpackStream({
-                mode: _PROD ? 'production' : 'development',
-                devtool: _PROD ? undefined : 'source-map',
-                entry: './src/js/main.ts',
-                module: {
-                    rules: [
-                        {
-                            test: /\.tsx?$/,
-                            use: 'ts-loader',
-                            exclude: /node_modules/,
-                        },
-                    ],
-                },
-                plugins: [
-                    new Dotenv({
-                        path: './.env',
-                    }),
-                    new webpack.DefinePlugin({
-                        __VERSION: JSON.stringify(
-                            require('./package.json').version
-                        ),
-                    }),
-                ],
-                resolve: {
-                    extensions: ['.tsx', '.ts', '.js'],
-                },
-                output: {
-                    filename: 'bundle.js',
-                },
-            })
-        )
-        .pipe(dest(outputLocation));
+  return gulp
+    .src(tsLocation)
+    .pipe(
+      webpackStream({
+        mode: _PROD ? 'production' : 'development',
+        devtool: _PROD ? undefined : 'source-map',
+        entry: './src/js/main.ts',
+        module: {
+          rules: [
+            {
+              test: /\.tsx?$/,
+              use: 'ts-loader',
+              exclude: /node_modules/,
+            },
+          ],
+        },
+        plugins: [
+          new Dotenv({
+            path: './.env',
+          }),
+          new webpack.DefinePlugin({
+            __VERSION: JSON.stringify(appVersion),
+          }),
+        ],
+        resolve: {
+          extensions: ['.tsx', '.ts', '.js'],
+        },
+        output: {
+          filename: 'bundle.js',
+        },
+      })
+    )
+    .pipe(gulp.dest(outputLocation));
 }
 
 function buildHtml() {
-    return src(htmlLocation)
-        .pipe(
-            replace('%STYLESHEET%', () => {
-                const stylesheet = fs.readFileSync(
-                    outputLocation + '/main.css',
-                    'utf8'
-                );
-                return `<style type="text/css">\n${stylesheet}</style>`;
-            })
-        )
-        .pipe(dest(outputLocation));
+  return gulp
+    .src(htmlLocation)
+    .pipe(
+      replace('%STYLESHEET%', () => {
+        const stylesheet = fs.readFileSync(
+          outputLocation + '/main.css',
+          'utf8'
+        );
+        return `<style type="text/css">\n${stylesheet}</style>`;
+      })
+    )
+    .pipe(gulp.dest(outputLocation));
 }
 
 function copyAssets() {
-    return src(assetLocation).pipe(dest(outputLocation));
+  return gulp.src(assetLocation).pipe(gulp.dest(outputLocation));
 }
 
 function watchSource() {
-    watch('./src/css/**/*.scss', series(compileSass, buildHtml));
-    watch('./src/js/**/*.ts', compileTs);
-    watch(htmlLocation, buildHtml);
+  gulp.watch('./src/css/**/*.scss', gulp.series(compileSass, buildHtml));
+  gulp.watch('./src/js/**/*.ts', compileTs);
+  gulp.watch(htmlLocation, buildHtml);
 }
 
-exports.build = series(
-    cleanup,
-    parallel(copyAssets, compileSass, compileTs),
-    buildHtml
+export const build = gulp.series(
+  cleanup,
+  gulp.parallel(copyAssets, compileSass, compileTs),
+  buildHtml
 );
-exports.watch = series(
-    cleanup,
-    copyAssets,
-    compileSass,
-    compileTs,
-    buildHtml,
-    watchSource
+
+export const watch = gulp.series(
+  cleanup,
+  copyAssets,
+  compileSass,
+  compileTs,
+  buildHtml,
+  watchSource
 );
-exports.clean = purgeNodeModules;
+
+export const clean = purgeNodeModules;

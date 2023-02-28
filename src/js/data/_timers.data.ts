@@ -1,19 +1,19 @@
-import { TargetTimer } from "../models/targetTimer.model";
+import { TargetTimer } from '../models/targetTimer.model';
 
 const SummerSolstice: TargetTimer = {
-  date: "21 June 2022 00:00",
-  description: "Summer Solstice ☀️",
-  menuText: "Summer ☀️",
-  specialNumber: 6,
+  date: '21 June 2023 14:58',
+  description: 'Summer Solstice ☀️',
+  menuText: 'Summer ☀️',
+  specialNumber: null,
   specialNumberConfetti: {
-    emojis: ["☀️", "☀️", "🌻", "🍺"],
+    emojis: ['☀️', '☀️', '🌻', '🍺'],
     emojiSize: 25,
     confettiRadius: 30,
     confettiNumber: 7,
   },
-  successText: "Longest day of the year! ☀️",
+  successText: 'Longest day of the year! ☀️',
   successConfetti: {
-    emojis: ["☀️", "☀️", "🌻", "🍺"],
+    emojis: ['☀️', '☀️', '🌻', '🍺'],
     emojiSize: 25,
     confettiRadius: 30,
     confettiNumber: 50,
@@ -21,19 +21,19 @@ const SummerSolstice: TargetTimer = {
 };
 
 const Christmas: TargetTimer = {
-  date: "25 December 2022 00:00 GMT",
-  description: "Christmas 2022 🎄",
-  menuText: "Christmas 🎄",
+  date: '25 December 2023 00:00',
+  description: 'Christmas Day 🎄',
+  menuText: 'Christmas 🎄',
   specialNumber: 25,
   specialNumberConfetti: {
-    emojis: ["🎄", "🎅", "🎁", "❄️", "⛄"],
+    emojis: ['🎄', '🎅', '🎁', '❄️', '⛄'],
     emojiSize: 25,
     confettiRadius: 30,
     confettiNumber: 7,
   },
-  successText: "🎄 Merry Christmas! ⛄",
+  successText: '🎄 Merry Christmas! ⛄',
   successConfetti: {
-    emojis: ["🎄", "🎅", "🎁", "🎁", "🎁", "❄️", "⛄"],
+    emojis: ['🎄', '🎅', '🎁', '🎁', '🎁', '❄️', '⛄'],
     emojiSize: 25,
     confettiRadius: 30,
     confettiNumber: 50,
