@@ -1,6 +1,4 @@
 import gulp from 'gulp';
-import gulpif from 'gulp-if';
-import sourcemaps from 'gulp-sourcemaps';
 import gulpSass from 'gulp-sass';
 import sassPackage from 'sass';
 import autoprefixer from 'gulp-autoprefixer';
@@ -25,17 +23,9 @@ function cleanup() {
   return deleteAsync([outputLocation + '/**/*']);
 }
 
-function purgeNodeModules() {
-  return new Promise((res) => {
-    if (_PROD) del('./node_modules/**/*');
-    res();
-  });
-}
-
 function compileSass() {
   return gulp
     .src(sassLocation)
-    .pipe(gulpif(!_PROD, sourcemaps.init()))
     .pipe(sass().on('error', sass.logError))
     .pipe(
       autoprefixer({
@@ -43,7 +33,6 @@ function compileSass() {
       })
     )
     .pipe(cleanCSS())
-    .pipe(gulpif(!_PROD, sourcemaps.write('.')))
     .pipe(gulp.dest(outputLocation));
 }
 
@@ -151,5 +140,3 @@ export const watch = gulp.series(
   buildHtml,
   watchSource
 );
-
-export const clean = purgeNodeModules;
