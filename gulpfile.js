@@ -1,9 +1,4 @@
-import dotenv from 'dotenv';
-dotenv.config();
-const _PROD = process.env.MODE === 'prod' ? true : false;
-
 import gulp from 'gulp';
-import Dotenv from 'dotenv-webpack';
 import gulpif from 'gulp-if';
 import sourcemaps from 'gulp-sourcemaps';
 import gulpSass from 'gulp-sass';
@@ -52,13 +47,12 @@ function compileSass() {
     .pipe(gulp.dest(outputLocation));
 }
 
-function compileTs() {
+function buildTs() {
   return gulp
     .src(tsLocation)
     .pipe(
       webpackStream({
-        mode: _PROD ? 'production' : 'development',
-        devtool: _PROD ? undefined : 'source-map',
+        mode: 'production',
         entry: './src/js/main.ts',
         module: {
           rules: [
@@ -70,11 +64,41 @@ function compileTs() {
           ],
         },
         plugins: [
-          new Dotenv({
-            path: './.env',
-          }),
           new webpack.DefinePlugin({
             __VERSION: JSON.stringify(appVersion),
+          }),
+        ],
+        resolve: {
+          extensions: ['.tsx', '.ts', '.js'],
+        },
+        output: {
+          filename: 'bundle.js',
+        },
+      })
+    )
+    .pipe(gulp.dest(outputLocation));
+}
+
+function devBuildTs() {
+  return gulp
+    .src(tsLocation)
+    .pipe(
+      webpackStream({
+        mode: 'development',
+        devtool: 'source-map',
+        entry: './src/js/main.ts',
+        module: {
+          rules: [
+            {
+              test: /\.tsx?$/,
+              use: 'ts-loader',
+              exclude: /node_modules/,
+            },
+          ],
+        },
+        plugins: [
+          new webpack.DefinePlugin({
+            __VERSION: 'devbuild',
           }),
         ],
         resolve: {
@@ -109,13 +133,13 @@ function copyAssets() {
 
 function watchSource() {
   gulp.watch('./src/css/**/*.scss', gulp.series(compileSass, buildHtml));
-  gulp.watch('./src/js/**/*.ts', compileTs);
+  gulp.watch('./src/js/**/*.ts', devBuildTs);
   gulp.watch(htmlLocation, buildHtml);
 }
 
 export const build = gulp.series(
   cleanup,
-  gulp.parallel(copyAssets, compileSass, compileTs),
+  gulp.parallel(copyAssets, compileSass, buildTs),
   buildHtml
 );
 
@@ -123,7 +147,7 @@ export const watch = gulp.series(
   cleanup,
   copyAssets,
   compileSass,
-  compileTs,
+  devBuildTs,
   buildHtml,
   watchSource
 );
