@@ -1,25 +1,25 @@
 .wrapper > footer {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    color: var(--light);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: var(--light);
 
-    .inner {
-        @include content-area;
+  .inner {
+    @include content-area;
 
-        font-size: 0.75rem;
-        text-align: center;
-        letter-spacing: 1px;
-        opacity: 0.1;
-        transition: opacity var(--transition);
+    font-size: 0.55rem;
+    text-align: center;
+    letter-spacing: 1px;
+    opacity: 0.1;
+    transition: opacity var(--transition);
 
-        &:hover {
-            opacity: 1;
-        }
-
-        .love {
-            padding: 0 5px;
-            color: var(--red);
-        }
+    &:hover {
+      opacity: 1;
     }
+
+    .love {
+      padding: 0 5px;
+      color: var(--red);
+    }
+  }
 }
