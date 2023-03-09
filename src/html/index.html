@@ -1,62 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="An aesthetic countdown timer" />
+    <link rel="author" href="/humans.txt" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="canonical" href="https://countdown.fyi" />
+    %STYLESHEET%
+    <title>Countdown</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="An aesthetic countdown timer" />
-  <link rel="author" href="/humans.txt" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
-  <link rel="canonical" href="https://countdown.fyi" />
-  %STYLESHEET%
-  <title>Countdown</title>
-</head>
+  <body>
+    <div class="wrapper">
+      <header class="sr">
+        <h1>Countdown Timer</h1>
+      </header>
 
-<body>
-  <div class="wrapper">
-    <header class="sr">
-      <h1>Countdown Timer</h1>
-    </header>
+      <main>
+        <nav class="switcher">
+          <ul id="switcherList"></ul>
+        </nav>
 
-    <main>
-      <nav class="switcher">
-        <ul id="switcherList"></ul>
-      </nav>
-
-      <div class="timer">
-        <div class="timer__inner">
-          <div class="timer__duration" id="timer">
-            00 Days 00 Hours 00 Minutes 00 seconds
+        <div class="timer">
+          <div class="timer__inner">
+            <div class="timer__duration" id="timer">
+              00 Days 00 Hours 00 Minutes 00 seconds
+            </div>
+            <span class="completed" id="successText"></span>
           </div>
-          <span class="completed" id="successText"></span>
         </div>
-      </div>
-      <div class="event">
-        <div class="event__date" id="date">
-          <span class="day">00</span>
-          <span class="month">JAN</span>
-          <span class="year">0000</span>
+        <div class="event">
+          <div class="event__date" id="date">
+            <span class="day">00</span>
+            <span class="month">JAN</span>
+            <span class="year">0000</span>
+          </div>
+          <div class="event__description" id="description">
+            Something is happening...
+          </div>
         </div>
-        <div class="event__description" id="description">
-          Something is happening...
+      </main>
+
+      <footer>
+        <div class="inner">
+          <p>
+            made with <span class="love">&hearts;</span> by
+            <a href="https://barnz.dev" rel="noopener">barnz.dev</a
+            >&nbsp;&bull;&nbsp;view
+            <a
+              href="https://github.com/incinn/countdown"
+              rel="noreferrer"
+              target="_blank"
+              >source</a
+            >
+            &nbsp;&bull;&nbsp;<span id="version">v1.0.0</span>
+          </p>
         </div>
-      </div>
-    </main>
+      </footer>
+    </div>
+  </body>
 
-    <footer>
-      <div class="inner">
-        <p>
-          made with <span class="love">&hearts;</span> by
-          <a href="https://barnz.dev" rel="noopener">barnz.dev</a>&nbsp;&bull;&nbsp;view
-          <a href="https://github.com/incinn/countdown" rel="noreferrer" target="_blank">source</a>
-          &nbsp;&bull;&nbsp;<span id="version">v1.0.0</span>
-        </p>
-      </div>
-    </footer>
-  </div>
-</body>
-
-<script src="bundle.js" defer></script>
-
+  <script src="bundle.js" defer></script>
+  <script
+    defer
+    data-domain="countdown.fyi"
+    src="https://admin.barnz.dev/js/script.js"
+  ></script>
 </html>
