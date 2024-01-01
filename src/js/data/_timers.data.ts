@@ -1,7 +1,7 @@
 import { TargetTimer } from '../models/targetTimer.model';
 
 const SummerSolstice: TargetTimer = {
-  date: '21 June 2023 14:58',
+  date: '20 June 2024 20:51 UTC',
   description: 'Summer Solstice ☀️',
   menuText: 'Summer ☀️',
   specialNumber: null,
@@ -21,7 +21,7 @@ const SummerSolstice: TargetTimer = {
 };
 
 const Christmas: TargetTimer = {
-  date: '25 December 2023 00:00',
+  date: '25 December 2024 00:00',
   description: 'Christmas Day 🎄',
   menuText: 'Christmas 🎄',
   specialNumber: 25,
